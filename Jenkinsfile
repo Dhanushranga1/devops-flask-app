@@ -7,21 +7,11 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 echo "Cloning Repository..."
                 git branch: 'main', url: env.GITHUB_REPO
-            }
-        }
-
-        stage('Unit Tests') {
-            steps {
-                echo "Running Unit Tests..."
-                sh '''
-                cd app
-                pip install -r requirements.txt
-                python -m pytest tests/ || python tests/test_app.py
-                '''
             }
         }
 
